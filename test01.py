@@ -9,7 +9,7 @@ def slicer(my_str,sub):
     else :
         raise Exception('Sub string not found!')
 
-file1 = open('/home/kali/Documents/Github/halstead-metrics/input2.txt',  encoding="utf8")
+file1 = open('/home/kali/Documents/Github/halstead-metrics/input1.txt',  encoding="utf8")
 Lines1 = file1.readlines() 
 
 tokens_op=[]
@@ -84,22 +84,13 @@ for op in range(0,len(word_tokens)):
             if index[j]==0:
                 item.append(j)   
         count = int((len(item)/2 - 1)*2)
-        
-        if count == 2: # you may change that... it takes values (*2) ...
-            while count >= 0:
-                y = [''.join(word_tokens[op][item[count]-1:item[count+1]+1])]
-                for i in range(item[count], item[count+1]+1):
-                    word_tokens[op][i]=slicer(word_tokens[op][i],str(word_tokens[op][i]))     
-                word_tokens[op][item[count]-1:item[count+1]+1] = ''.join(word_tokens[op][item[count]-1:item[count+1]+1])
-                word_tokens[op][item[count]-1] = y[0]
-                count -= 2
-        else:
+        while count >= 0:
             y = [''.join(word_tokens[op][item[count]-1:item[count+1]+1])]
             for i in range(item[count], item[count+1]+1):
-                word_tokens[op][i]=slicer(word_tokens[op][i],str(word_tokens[op][i]))
+                word_tokens[op][i]=slicer(word_tokens[op][i],str(word_tokens[op][i]))     
             word_tokens[op][item[count]-1:item[count+1]+1] = ''.join(word_tokens[op][item[count]-1:item[count+1]+1])
-            word_tokens[op][item[count]-1] = y[0]  
-
+            word_tokens[op][item[count]-1] = y[0]
+            count -= 2
     if "(" in word_tokens[op] and ")" in word_tokens[op]:
         index = [i.find("(") and i.find(")") for i in word_tokens[op]]
         item=[]
