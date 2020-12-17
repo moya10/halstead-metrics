@@ -9,24 +9,27 @@ def slicer(my_str,sub):
     else :
         raise Exception('Sub string not found!')
 
-file1 = open('/home/kali/Documents/Github/halstead-metrics/input1.txt',  encoding="utf8")
+file1 = open('/home/kali/Documents/Github/halstead-metrics/input2.txt',  encoding="utf8")
 Lines1 = file1.readlines() 
 
-tokens_op=[]
+tokens_op = []
 word_tokens = []
 
 for line in Lines1:
-    if line.startswith('/*') or line.startswith('*') or line.startswith('//'):
+    if line.startswith('/*') or line.startswith('*') or line.startswith('//') or line.startswith('#'):
         continue  # skip comments
-        #line = line.replace(line," ")
     tokens_op.append(sent_tokenize(line))
 
+LOC = 0 
 for op in range(0,len(tokens_op)):
     if "//" in tokens_op[op][0]:
         tokens_op[op][0]=(slicer(tokens_op[op][0],"//"))
     word_tokens.append(word_tokenize(tokens_op[op][0]))
 
-print(word_tokens)    
+for op in range(0,len(tokens_op)):
+    tokens_op[op] = [line for line in tokens_op[op] if line.strip() != '']
+    if tokens_op[op]:
+        LOC += 1
 
 for op in range(0,len(word_tokens)):
 
@@ -117,9 +120,8 @@ for op in range(0,len(word_tokens)):
 
 x = [i for i in word_tokens]
 word_tokens = [j for i in x for j in i]
-print(word_tokens)
 word_counter = Counter(word_tokens)
-print(word_counter)
+
 #Define operators lexico`
 operators = ["{","}",",",";","+","++","--","-","*","/","<",">","<=",">=","for()","while()","do","if()","else","return","=","==","byte","char","short","int","long","float","double","scanf()","&","a[]"]    
 
@@ -130,14 +132,19 @@ index_N2 = word_tokens
 for i in range(0, len(operators)):
     if operators[i] in word_tokens:
         index_n1.append(operators[i])
-print(index_n1[5])
+
+#print(index_n1[5])
+
 for i in range(0, len(word_tokens)):
     if word_tokens[i] in operators:
         index_N1.append(word_tokens[i])
 for i in range(0,len(index_n1)):
     while index_n1[i] in index_N2:
         index_N2.remove(str(index_n1[i]))
-
+print("n1 = ", Counter(index_n1))
+print("n2 = ", len(Counter(index_N2)))
+print("N1 = ", Counter(index_N1))
+print("N2 = ", Counter(index_N2))
 #############################################################################
 #           HALSTEAD METRICS                                                #
 #############################################################################
@@ -147,16 +154,19 @@ N2 = len(index_N2)
 n1 = len(index_n1)
 N1 = len(index_N1)
 
-val = {"n1": n1, "N1": N1, "n2": n2, "N2": N2, "N": N1 + N2, "n": n1 + n2, "V": round((N1 + N2) * log2(n1 + n2),2), "D": round(n1 * N2 / 2 / n2,2)}
+val = {"n1": n1, "N1": N1, "n2": n2, "N2": N2, "N": N1 + N2, "n": n1 + n2, "SLOC/LOC": round((len(Lines1)-LOC)/LOC,2),"V": round((N1 + N2) * log2(n1 + n2),2), "D": round(n1 * N2 / 2 / n2,2)}
 val['E'] = round(val['D'] * val['V'],2)
-val['L'] = round(val['V'] / val['D'] / val['D'],2)
 val['I'] = round(val['V'] / val['D'],2)
 val['T'] = round(val['E'] / (18),2)
 val['N^'] = round(n1 * log2(n1) + n2 * log2(n2),2)
-val['L^'] = round(2 * n2 / N2 / n1,2)
+val['L^'] = round(2 * n2 / (N2 * n1),2)
+val['E^'] = round(val['N^']/val['N'],2)
+val['LL'] = round(val['V'] / val['D'] / val['D'],2)
+val['LL^'] = round(val['V']*pow(val['L^'],2),2)
+val['PL'] = round((val['LL^']/val['L^'])/val['V'],2)
 
 unit = {'V': 'bits', 'T': 'seconds'}
-name = {'n1':'n1','N1':'N1','n2':'n2','N2':'N2','N':'Halstead Program Length', 'n':'Halstead Vocabulary', 'V':'Program Volume', 'D':'Program Difficulty', 'E': 'Programming Effort', 'L':'Language level', 'I':'Intelligence Content', 'T':'Programming time','N^':'Estimated program length', 'L^':'Estimated language level'}
+name = {'n1':'n1','N1':'N1','n2':'n2','N2':'N2','N':'Halstead Program Length', 'n':'Halstead Vocabulary', "SLOC/LOC": "Lines of Comments / Physical Lines of Code",'V':'Program Volume', 'D':'Program Difficulty', 'E': 'Programming Effort', 'LL':'Language level', 'I':'Intelligence Content', 'T':'Programming time','N^':'Estimated program length', 'L^':'Estimated program level', 'E^':'Estimated program level/Program length','LL^':'Estimated Language Level','PL':'Program Level'}
 
 print("\nThe various values are: ")
 for key in val.keys():

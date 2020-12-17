@@ -1,33 +1,39 @@
-int a[10],n,i,j; 
-printf("Μέγεθος πίνακα: "); 
-scanf("%d",&n); 
-if(n<0 || n>10) 
-{ 
+#include <stdio.h>
+#include<conio.h>
+//including stdio.h for printf and other functions
+int main()
+{
+    int a[10],n,i,j; 
     printf("Μέγεθος πίνακα: "); 
     scanf("%d",&n); 
-}
-printf("Στοιχεια πινακα: "); 
-for(int i = 0;i < n; i++) //Loop for ascending ordering   
-{ 
-scanf("%d",&a[i]);
-} 
-for (int i = 0; i < n; i++) 
-{
-    for (int j = 0; j < n; j++)  
-    {  
-        if (a[j] > a[i]) //Comparing other array elements  
-        {
-            int tmp = a[i]; //Using temporary variable   
-            a[i] = a[j];  
-            a[j] = tmp;   
-        }
-    }   
-} 
-printf("\n\n ταξινομημένα κατά αύξουσα σειρά: " );    
-i = 0; 
-while (i<n)
-  { 
-      printf(" %d ", a[i]);  
-      i++; 
-  } 
+    if(n<0 || n>10) 
+    { 
+        printf("Μέγεθος πίνακα: "); 
+        scanf("%d",&n); 
+    }
+    printf("Στοιχεια πινακα: "); 
+    for(int i = 0;i < n; i++) //Loop for ascending ordering   
+    { 
+    scanf("%d",&a[i]);
+    } 
+    for (int i = 0; i < n; i++) 
+    {
+        for (int j = 0; j < n; j++)  
+        {  
+            if (a[j] > a[i]) //Comparing other array elements  
+            {
+                int tmp = a[i]; //Using temporary variable   
+                a[i] = a[j];  
+                a[j] = tmp;   
+            }
+        }   
+    } 
+    printf("\n\n ταξινομημένα κατά αύξουσα σειρά: " );    
+    i = 0; 
+    while (i<n)
+    { 
+        printf(" %d ", a[i]);  
+        i++; 
+    } 
 return 0; //returning 0 status to system 
+}

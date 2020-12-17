@@ -1,42 +1,54 @@
-int a[10]; 
-int n,i,j; 
-printf("Δωστε ξανα μεγεθος πινακα: "); 
-scanf("%d",&n);  
-if(n<0 || n>10)  
-{ 
-    printf("Δωσε ξανα μεγεθος πινακα: "); 
-    scanf("%d",&n); 
-    //printf("array size %d", n)
-}
-printf("Στοιχεια πινακα: "); 
-for(int i = 0;i < n; i++) 
-{ 
-    scanf("%d",&a[i]);
-} 
-for (int i = 0; i < n; i++) 
-{ 
-    for (int j = 0; j < n; j++)
+/***********************************************************************
+*                                                                      *
+*                                                                      *
+*                                                                      *
+*           My best Code ever, Compile, Run and Debug C                *
+*                                                                      *
+***********************************************************************/
+#include <stdio.h>
+#include<conio.h>
+int main()
+{
+    int a[10]; 
+    int n,i,j; 
+    printf("Δωστε ξανα μεγεθος πινακα: "); 
+    scanf("%d",&n);  
+    if(n<0 || n>10)  
     { 
-        if (a[j] > a[i])
-        //printf("The greater element %d", a[j]);
-        {
-            int tmp = a[i];
-            a[i] = a[j]; //the elements in the top 
-            a[j] = tmp;  
+        printf("Δωσε ξανα μεγεθος πινακα: "); 
+        scanf("%d",&n); 
+        //printf("array size %d", n)
+    }
+    printf("Στοιχεια πινακα: "); 
+    for(int i = 0;i < n; i++) 
+    { 
+        scanf("%d",&a[i]);
+    } 
+    for (int i = 0; i < n; i++) 
+    { 
+        for (int j = 0; j < n; j++)
+        { 
+            if (a[j] > a[i])
+            //printf("The greater element %d", a[j]);
+            {
+                int tmp = a[i];
+                a[i] = a[j]; //the elements in the top 
+                a[j] = tmp;  
+            }
         }
     }
-}
 /***********************************************************************
 *
 *           Sorting!!!!!!!!!!!!!!!!!
 *
 ***********************************************************************/
-printf("\n\n ΤΑΞΙΝΟΜΗΜΕΝΑ ΚΑΤΑ ΑΥΞΟΥΣΑ ΣΕΙΡΑ: " ); 
-for (int y = 0; y < n; y++)
-{ 
-    printf("\n"); 
-    // printf("the elements are: ");  
-    printf(" %d ", a[y]); 
-}
-// printf("sorting completed"); 
+    printf("\n\n ΤΑΞΙΝΟΜΗΜΕΝΑ ΚΑΤΑ ΑΥΞΟΥΣΑ ΣΕΙΡΑ: " ); 
+    for (int y = 0; y < n; y++)
+    { 
+        printf("\n"); 
+        // printf("the elements are: ");  
+        printf(" %d ", a[y]); 
+    }
+    // printf("sorting completed"); 
 return 0; //end of the best code!!!!!!!!!!!!
+}
