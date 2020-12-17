@@ -11,7 +11,7 @@ def slicer(my_str,sub):
     else :
         raise Exception('Sub string not found!')
 
-file1 = open('/home/kali/Documents/Github/halstead-metrics/input2.txt',  encoding="utf8")
+file1 = open('input2.txt',encoding="utf8")
 Lines1 = file1.readlines() 
 
 tokens_op = []
@@ -159,19 +159,19 @@ print("n2 = ", len(Counter(index_N2)))
 print("N1 = ", Counter(index_N1))
 print("N2 = ", Counter(index_N2))
 
-val = {"n1": n1, "N1": N1, "n2": n2, "N2": N2, "N": N1 + N2, "n": n1 + n2, "SLOC/LOC": round((len(Lines1)-LOC)/LOC,2),"V": round((N1 + N2) * log2(n1 + n2),2), "D": round(n1 * N2 / 2 / n2,2)}
+val = {"n1": n1, "N1": N1, "n2": n2, "N2": N2, "N": N1 + N2, "n": n1 + n2, "SLOC/LOC": round((len(Lines1)-LOC)/LOC,2),"V": round((N1 + N2) * log2(n1 + n2),2), "V*": round( (2 + n2) * log2(2 + n2) ,2),"D": round( (n1 / 2) * (N2 / n2) ,2)}
 val['E'] = round(val['D'] * val['V'],2)
-val['I'] = round(val['V'] / val['D'],2)
-val['T'] = round(val['E'] / (18),2)
+val['T'] = round(val['E'] / (60*18),2)
 val['N^'] = round(n1 * log2(n1) + n2 * log2(n2),2)
 val['L^'] = round(2 * n2 / (N2 * n1),2)
+val['I'] = round(val['L^'] * val['V'],2)
 val['E^'] = round(val['N^']/val['N'],2)
-val['LL'] = round(val['V'] / val['D'] / val['D'],2)
-val['LL^'] = round(val['V']*pow(val['L^'],2),2)
-val['PL'] = round((val['LL^']/val['L^'])/val['V'],2)
+val['L*'] = round(val['V'] / val['D'] / val['D'],2)
+val['L'] = round((val['V*']/val['V']),2)
+val['lamda'] = round(val['L']*val['V*'],2)
 
-unit = {'V': 'bits', 'T': 'seconds'}
-name = {'n1':'n1','N1':'N1','n2':'n2','N2':'N2','N':'Halstead Program Length', 'n':'Halstead Vocabulary', "SLOC/LOC": "Lines of Comments / Physical Lines of Code",'V':'Program Volume', 'D':'Program Difficulty', 'E': 'Programming Effort', 'LL':'Language level', 'I':'Intelligence Content', 'T':'Programming time','N^':'Estimated program length', 'L^':'Estimated program level', 'E^':'Estimated program level/Program length','LL^':'Estimated Language Level','PL':'Program Level'}
+unit = {'V': 'bits', 'T': 'minutes'}
+name = {'n1':'n1','N1':'N1','n2':'n2','N2':'N2','N':'Halstead Program Length', 'n':'Halstead Vocabulary', "SLOC/LOC": "Lines of Comments / Physical Lines of Code",'V':'Program Volume', 'V*':'Potential Minimum Volume' ,'D':'Program Difficulty', 'E': 'Programming Effort', 'lamda':'Language level', 'I':'Intelligence Content', 'T':'Programming time','N^':'Estimated program length', 'L^':'Estimated program level', 'E^':'Estimated program level/Program length','L*':'Estimated Language Level','L':'Program Level'}
 
 print("\nThe various values are: ")
 for key in val.keys():
@@ -191,7 +191,7 @@ d = {"complexity_1": [
                 "program length": val['N'],
            },
            {
-                "language level*10": val['LL']*10,
+                "language level": val['lamda'],
 
            },
            {
