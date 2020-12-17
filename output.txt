@@ -1,0 +1,172 @@
+#####################################################################################
+#
+#			INPUT_1
+#
+#####################################################################################
+
+n1 =  Counter({
+'main()': 1,
+ '||': 1,
+ '{': 1,
+ '}': 1,
+ ',': 1,
+ ';': 1,
+ '++': 1,
+ 'printf()': 1,
+ '<': 1, 
+'>': 1,
+ 'for()': 1, 
+'while()': 1,
+ 'if()': 1,
+ 'return': 1,
+ '=': 1,
+ 'int': 1,
+ 'scanf()': 1,
+ '&': 1, 
+'a[]': 1
+})
+
+n2 =  11
+
+N1 =  Counter({
+';': 21,
+ 'a[]': 9, 
+'{': 7,
+ ',': 7,
+ '}': 7, 
+'=': 7,
+ 'int': 6,
+ 'printf()': 5, 
+'<': 5,
+ '++': 4, 
+'scanf()': 3,
+ '&': 3, 
+'for()': 3, 
+'if()': 2,
+ '>': 2, 
+'main()': 1, 
+'||': 1, 
+'while()': 1,
+ 'return': 1
+})
+
+N2 =  Counter({
+'i': 15,
+ 'n': 9, 
+'j': 7, 
+'0': 6, 
+"``%d''": 3,
+ '10': 2,
+ '``Μέγεθοςπίνακα:``': 2,
+ 'tmp': 2, 
+'``Στοιχειαπινακα:``': 1, 
+'``\\n\\nταξινομημένακατάαύξουσασειρά:``': 1, 
+'``%d``': 1
+})
+
+The various values are: 
+n1 (n1) = 19 
+N1 (N1) = 95 
+n2 (n2) = 11 
+N2 (N2) = 49 
+N (Halstead Program Length) = 144 
+n (Halstead Vocabulary) = 30 
+SLOC/LOC (Lines of Comments / Physical Lines of Code) = 0.08 
+V (Program Volume) = 706.59 bits
+D (Program Difficulty) = 42.32 
+E (Programming Effort) = 29902.89 
+I (Intelligence Content) = 16.7 
+T (Programming time) = 1661.27 seconds
+N^ (Estimated program length) = 118.76 
+L^ (Estimated program level) = 0.02 
+E^ (Estimated program level/Program length) = 0.82 
+LL (Language level) = 0.39 
+LL^ (Estimated Language Level) = 0.28 
+PL (Program Level) = 0.02
+
+#####################################################################################
+#
+#			INPUT_2
+#
+#####################################################################################
+
+n1 =  Counter({
+'main()': 1,
+ '||': 1, 
+'{': 1, 
+'}': 1, 
+',': 1,
+ ';': 1,
+ '++': 1,
+ 'printf()': 1,
+ '<': 1, 
+'>': 1, 
+'for()': 1,
+ 'if()': 1, 
+'return': 1,
+ '=': 1, 
+'int': 1, 
+'scanf()': 1,
+ '&': 1,
+ 'a[]': 1
+})
+
+n2 =  14
+
+N1 =  Counter({
+';': 23,
+ 'a[]': 9,
+ 'int': 8,
+ '{': 7, 
+'}': 7, 
+'=': 7, 
+',': 6, 
+'printf()': 6, 
+'<': 5,
+ 'for()': 4, 
+'++': 4, 
+'scanf()': 3,
+ '&': 3, 
+'if()': 2, 
+'>': 2,
+ 'main()': 1,
+ '||': 1, 
+'return': 1
+})
+
+N2 =  Counter({
+'i': 11,
+ 'n': 9,
+ 'j': 7,
+ '0': 6,
+ 'y': 4, 
+"``%d''": 3, 
+'10': 2, 
+'tmp': 2,
+ '``Δωστεξαναμεγεθοςπινακα:``': 1,
+ '``Δωσεξαναμεγεθοςπινακα:``': 1,
+ '``Στοιχειαπινακα:``': 1, 
+'``\\n\\nΤΑΞΙΝΟΜΗΜΕΝΑΚΑΤΑΑΥΞΟΥΣΑΣΕΙΡΑ:``': 1,
+ "``\\n''": 1,
+ '``%d``': 1
+})
+
+The various values are: 
+n1 (n1) = 18 
+N1 (N1) = 99 
+n2 (n2) = 14 
+N2 (N2) = 50 
+N (Halstead Program Length) = 149 
+n (Halstead Vocabulary) = 32 
+SLOC/LOC (Lines of Comments / Physical Lines of Code) = 0.5 
+V (Program Volume) = 745.0 bits
+D (Program Difficulty) = 32.14 
+E (Programming Effort) = 23944.3 
+I (Intelligence Content) = 23.18 
+T (Programming time) = 1330.24 seconds
+N^ (Estimated program length) = 128.36 
+L^ (Estimated program level) = 0.03 
+E^ (Estimated program level/Program length) = 0.86 
+LL (Language level) = 0.72 
+LL^ (Estimated Language Level) = 0.67 
+PL (Program Level) = 0.03

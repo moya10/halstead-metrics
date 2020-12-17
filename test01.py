@@ -1,6 +1,8 @@
 from nltk.tokenize import sent_tokenize, word_tokenize 
 from collections import Counter
 from math import log2
+import pandas as pd
+import matplotlib.pyplot as plt
 
 def slicer(my_str,sub):
     index=my_str.find(sub)
@@ -174,3 +176,31 @@ name = {'n1':'n1','N1':'N1','n2':'n2','N2':'N2','N':'Halstead Program Length', '
 print("\nThe various values are: ")
 for key in val.keys():
     print("{} ({}) = {} {}".format(key,name[key], val[key], unit[key] if key in unit else ''))
+
+###########################################################################
+#
+#           PLOTS
+#
+###########################################################################
+
+d = {"complexity_1": [
+           {
+               "% comments": round(((len(Lines1)-LOC)/len(Lines1))*100,2),
+           },
+           {
+                "program length": val['N'],
+           },
+           {
+                "language level*10": val['LL']*10,
+
+           },
+           {
+               "program intelligence": val['I'],
+           }
+]}
+
+df1 = pd.DataFrame(d['complexity_1'])
+plt.style.use('ggplot')
+df1.plot.barh()
+plt.ylabel('Code risk and complexity')
+plt.show()
