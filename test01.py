@@ -33,7 +33,7 @@ for op in range(0,len(tokens_op)):
 
 for op in range(0,len(word_tokens)):
 
-    if ("i++" in word_tokens[op]) or ("j++" in word_tokens[op]):
+    if ("i++" in word_tokens[op]) or ("j++" in word_tokens[op]) or ("y++" in word_tokens[op]):
         x = [i.split('++') for i in word_tokens[op]]
         word_tokens[op] = [j for i in x for j in i]
         word_tokens[op] = ["++" if x == '' else x for x in word_tokens[op]]        
@@ -123,7 +123,7 @@ word_tokens = [j for i in x for j in i]
 word_counter = Counter(word_tokens)
 
 #Define operators lexico`
-operators = ["{","}",",",";","+","++","--","-","*","/","<",">","<=",">=","for()","while()","do","if()","else","return","=","==","byte","char","short","int","long","float","double","scanf()","&","a[]"]    
+operators = ["main()","||","&&","{","}",",",";","+","++","printf()","--","-","*","/","<",">","<=",">=","for()","while()","do","if()","else","return","=","==","byte","char","short","int","long","float","double","scanf()","&","a[]"]    
 
 index_n1 = []
 index_N1 = []
@@ -141,10 +141,7 @@ for i in range(0, len(word_tokens)):
 for i in range(0,len(index_n1)):
     while index_n1[i] in index_N2:
         index_N2.remove(str(index_n1[i]))
-print("n1 = ", Counter(index_n1))
-print("n2 = ", len(Counter(index_N2)))
-print("N1 = ", Counter(index_N1))
-print("N2 = ", Counter(index_N2))
+
 #############################################################################
 #           HALSTEAD METRICS                                                #
 #############################################################################
@@ -153,6 +150,12 @@ n2 = len(Counter(index_N2))
 N2 = len(index_N2)
 n1 = len(index_n1)
 N1 = len(index_N1)
+
+
+print("n1 = ", Counter(index_n1))
+print("n2 = ", len(Counter(index_N2)))
+print("N1 = ", Counter(index_N1))
+print("N2 = ", Counter(index_N2))
 
 val = {"n1": n1, "N1": N1, "n2": n2, "N2": N2, "N": N1 + N2, "n": n1 + n2, "SLOC/LOC": round((len(Lines1)-LOC)/LOC,2),"V": round((N1 + N2) * log2(n1 + n2),2), "D": round(n1 * N2 / 2 / n2,2)}
 val['E'] = round(val['D'] * val['V'],2)
